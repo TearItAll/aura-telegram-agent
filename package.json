@@ -1,0 +1,25 @@
+{
+  "name": "aura-personal-agent",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "description": "AURA personal Telegram assistant on Cloudflare Workers",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "check": "node --check worker.js && node --check src/task-plan-actions.js && node --check src/task-plan-revisions.js && node --check src/daily-news.js && node --check src/news-ai.js",
+    "test": "node --test tests/security.test.mjs tests/task-plan-actions.test.mjs tests/task-plan-revisions.test.mjs tests/clock-boundary.test.mjs tests/status-final.test.mjs tests/daily-news.test.mjs tests/news-ai-budget.test.mjs tests/confirm-reasons.test.mjs tests/news-missed-notice.test.mjs",
+    "security:scan": "node scripts/security-scan.mjs",
+    "test:runtime": "node tests/workerd.integration.mjs",
+    "build:local": "node scripts/build-local.mjs",
+    "test:news-runtime": "node tests/daily-news.workerd.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "miniflare": "4.20260730.0",
+    "workerd": "1.20261019.1",
+    "wrangler": "4.152.0"
+  }
+}
